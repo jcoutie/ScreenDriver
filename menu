@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#create screen detail arrays
+declare -a displayDevice
+declare -a x1
+declare -a y1
+declare -a x2
+declare -a y2
+
+#get list of screens
+INPUT=screens.cfg
+IFS=','
+[ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
+while read sname sdipslay sx1 sy1 sx2 sy2
+do
+	options+=("$sname")
+	displayDevice[$sname]=$sdisplay
+	x1[$sname]=$sx1
+	y1[$sname]=$sy1
+	x2[$sname]=$sx2
+	y2[$sname]=$sy2
+done < $INPUT
+
+#create menu
+echo "SELECT SCREEN"
+PS3='Please enter your choice: '
+options+=("quit")
+select opt in "${options[@]}"
+do
+	case $opt in
+		"quit")
+			echo "Goodbye"
+			break
+			;;
+		*)
+			echo "invalid option $REPLY"
+			;;
+	esac
+done

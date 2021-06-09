@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Arguments: screenName X1 Y1 X2 Y2
+
+screen -dmS "$1" sh -c 'omxplayer --display 2 --no-osd --fps 10 --win $2,$3,$4,$5 --loop /home/pi/Dinos/Dinos-N1-720.mp4'
+

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Get parent path of files
+
+PP=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+echo $PP
+
 #create screen detail arrays
 declare -a displayDevice
 declare -a x1
@@ -44,6 +49,7 @@ do
 			echo "selection option $opt"
 			echo "origin: ${x1[$REPLY-1]},${y1[$REPLY-1]}"
 			echo "extent: ${x2[$REPLY-1]},${y2[$REPLY-1]}"
+			bash "${PP}/testPlay" "$opt" "${x1[$REPLY-1]}" "${y1[$REPLY-1]}" "${x2[$REPLY-1]}" "${y2[$REPLY-1]}"
 			;;
 	esac
 done
